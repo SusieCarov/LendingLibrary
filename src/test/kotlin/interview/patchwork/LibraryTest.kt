@@ -3,6 +3,8 @@ package interview.patchwork
 import dev.forkhandles.result4k.Failure
 import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
+import interview.patchwork.domain.BookStatus.Available
+import interview.patchwork.domain.BookStatus.Borrowed
 import interview.patchwork.domain.BorrowProblem.BookNotAvailable
 import interview.patchwork.domain.BorrowProblem.BookNotFound
 import io.kotest.assertions.assertSoftly
@@ -22,35 +24,35 @@ class LibraryTest :
               title = "Intro to Coding",
               author = "John Doe",
               isbn = "1234",
-              status = "Borrowed",
+              status = Borrowed,
               id = 0.toUUID())
       val book1b =
           Book(
               title = "Intro to Coding",
               author = "John Doe",
               isbn = "1234",
-              status = "Available",
+              status = Available,
               id = 1.toUUID())
       val book2 =
           Book(
               title = "Intro to Coding",
               author = "John Smith",
               isbn = "2345",
-              status = "Available",
+              status = Available,
               id = 2.toUUID())
       val book3 =
           Book(
               title = "Anyone Can Cook",
               author = "Average Joe",
               isbn = "3456",
-              status = "Available",
+              status = Available,
               id = 3.toUUID())
       val book4 =
           Book(
               title = "Adventure is Out There!",
               author = "Average Joe",
               isbn = "4567",
-              status = "Available",
+              status = Available,
               id = 4.toUUID())
 
       val library = Library(mutableListOf(book1a, book1b, book2, book3, book4))
@@ -113,7 +115,7 @@ class LibraryTest :
 
           assertSoftly {
             result shouldBe Success(Unit)
-            library.books.first { it.id == bookId }.status shouldBe "Borrowed"
+            library.books.first { it.id == bookId }.status shouldBe Borrowed
           }
         }
 
