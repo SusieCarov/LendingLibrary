@@ -129,4 +129,33 @@ class LibraryTest :
           result shouldBe Failure(BookNotFound)
         }
       }
+
+      feature("Library owner can see all borrowed books") {
+        scenario("one book is currently borrowed") {
+          val result = library.findBorrowedBooks()
+          result.shouldContainExactly(book1a)
+        }
+
+        scenario("Multiple books are currently borrowed") {
+          val extraBook =
+              Book(
+                  title = "Extra Book",
+                  author = "Outta Nowhere",
+                  isbn = "1920",
+                  status = Borrowed,
+                  id = 30.toUUID())
+
+          val libraryWithTwoBorrowedBooks =
+              Library(mutableListOf(book1a, book1b, book2, book3, book4, extraBook))
+
+          val result = libraryWithTwoBorrowedBooks.findBorrowedBooks()
+          result.shouldContainExactly(book1a, extraBook)
+        }
+
+        scenario("No books are currently borrowed") {
+          val libraryWithNoBorrowedBooks = Library(mutableListOf(book1b, book2, book3, book4))
+          val result = libraryWithNoBorrowedBooks.findBorrowedBooks()
+          result.shouldBeEmpty()
+        }
+      }
     })

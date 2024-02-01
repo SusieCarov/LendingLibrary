@@ -46,4 +46,8 @@ class Library(val books: MutableList<Book>) {
       }
     }
   }
+
+  fun findBorrowedBooks(): List<Book> {
+    TODO("Not yet implemented")
+  }
 }
