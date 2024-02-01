@@ -61,6 +61,9 @@ I would ideally want to load book list into memory (no database) at start up fro
 something.
 
 For now, I'll start with assuming the books are loaded.
+
+Actually, exposing the result to user is going to be quite tricky for me since I'm not familiar with
+http4k. So I'm going to leave that part out for now.
 </details>
 
 ## Not Doing For Now
@@ -75,6 +78,18 @@ I'm choosing not to worry about the initial loading/initialization of the librar
 
 The test classes manually load in book objects and will prove the functions work, so that's good
 enough for now. If I have time, I'll go back and try and add a csv load of some initial data.
+
+</details>
+
+<details>
+<summary>Expose Features and Results to User</summary>
+
+I'm not familiar enough with http4k to quickly get the Library functionality connected to the
+router. So again, since the assignment says
+> Just prove it works by calling the relevant functions from other code.
+
+I'm going to leave this be for now and let calling the Library functions from the tests be enough
+for now.
 
 </details>
 

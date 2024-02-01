@@ -11,20 +11,24 @@ import org.http4k.routing.routes
 import org.http4k.server.SunHttp
 import org.http4k.server.asServer
 
-val app: HttpHandler = routes(
-    "/ping" bind GET to {
-        Response(OK).body("pong")
-    },
-
-    "/testing/kotest" bind GET to {request ->
-        Response(OK).body("Echo '${request.bodyString()}'")
-    }
-)
+val app: HttpHandler =
+    routes(
+        // TODO: remove these placeholders from the http4k toolbox code gen
+        "/ping" bind GET to { Response(OK).body("pong") },
+        "/testing/kotest" bind
+            GET to
+            { request ->
+              Response(OK).body("Echo '${request.bodyString()}'")
+            },
+        // TODO: figure out how to connect this to Library.kt
+        // And add tests
+        "/byAuthor" bind GET to { request -> Response(OK).body("result") })
 
 fun main() {
-    val printingApp: HttpHandler = PrintRequest().then(app)
+  // TODO: Should remove the PrintRequest() once done with initial development
+  val printingApp: HttpHandler = PrintRequest().then(app)
 
-    val server = printingApp.asServer(SunHttp(9000)).start()
+  val server = printingApp.asServer(SunHttp(9000)).start()
 
-    println("Server started on " + server.port())
+  println("Server started on " + server.port())
 }
