@@ -1,7 +1,7 @@
 package interview.patchwork.domain
 
 sealed interface BorrowProblem {
-  object BookNotFound
+  data object BookNotFound : BorrowProblem
 
-  object BookNotAvailable
+  data object BookNotAvailable : BorrowProblem
 }

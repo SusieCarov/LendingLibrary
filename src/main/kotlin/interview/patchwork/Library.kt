@@ -1,8 +1,14 @@
 package interview.patchwork
 
+import dev.forkhandles.result4k.Failure
 import dev.forkhandles.result4k.Result
+import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
+import interview.patchwork.domain.BookStatus.Available
+import interview.patchwork.domain.BookStatus.Borrowed
 import interview.patchwork.domain.BorrowProblem
+import interview.patchwork.domain.BorrowProblem.BookNotAvailable
+import interview.patchwork.domain.BorrowProblem.BookNotFound
 import java.util.UUID
 
 class Library(val books: MutableList<Book>) {
@@ -25,6 +31,19 @@ class Library(val books: MutableList<Book>) {
   }
 
   fun borrow(bookId: UUID): Result<Unit, BorrowProblem> {
-    TODO()
+
+    val book: Book? = books.find { it.id == bookId }
+
+    if (book == null) {
+      return Failure(BookNotFound)
+    }
+
+    return when (book.status) {
+      Borrowed -> Failure(BookNotAvailable)
+      Available -> {
+        book.status = Borrowed
+        return Success(Unit)
+      }
+    }
   }
 }

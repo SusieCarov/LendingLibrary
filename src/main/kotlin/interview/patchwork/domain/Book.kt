@@ -6,7 +6,7 @@ data class Book(
     val title: String,
     val author: String,
     val isbn: String,
-    val status: BookStatus,
+    var status: BookStatus,
     val id: UUID = UUID.randomUUID()
 )
 

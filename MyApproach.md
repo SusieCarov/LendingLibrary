@@ -106,8 +106,8 @@ implementing this validation for now, but I will make sure my test data follows 
 <details>
 As a library user, I would like to be able to borrow a book, so I can read it at home.
 
-- [ ] Validate the book isn't already borrowed
-- [ ] Change the status of the book on a successful borrow function call
+- [x] Validate the book isn't already borrowed
+- [x] Change the status of the book on a successful borrow function call
 - [ ] Expose functionality to user
 
 This is our first feature that modifies the state of the library!
@@ -170,3 +170,7 @@ us to validate that format and make other ISBN related functionality easier to e
 
 1. Do we want to ignore capitalization for user queries?
    : I'm ignoring capitalization for user searches for now
+
+2. What do we want the response to the user to be if the book is already borrowed?
+   : I'm using a sealed interface internally, but ideally we'd have a nice human-readable
+   message to show the user once it got back to them.
