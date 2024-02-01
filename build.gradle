@@ -33,6 +33,9 @@ test {
 dependencies {
     implementation("org.http4k:http4k-core:${http4kVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
+    implementation(platform("dev.forkhandles:forkhandles-bom:2.12.2.0"))
+    implementation("dev.forkhandles:result4k")
+
     testImplementation("org.http4k:http4k-testing-approval:${http4kVersion}")
     testImplementation("org.http4k:http4k-testing-hamkrest:${http4kVersion}")
     testImplementation("org.http4k:http4k-testing-kotest:${http4kVersion}")
@@ -42,5 +45,6 @@ dependencies {
     testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
     testImplementation("io.kotest:kotest-framework-engine:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("dev.forkhandles:result4k-kotest")
 }
 
