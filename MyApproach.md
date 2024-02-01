@@ -89,7 +89,7 @@ Pretty straightforward, and again let's start with the tests.
 <details>
 As a library user, I would like to be able to find books by ISBN, so that I know if they are available in the library.
 
-- [ ] Find books by ISBN
+- [x] Find books by ISBN
 - [ ] Expose result to user
 
 ISBNs are unique to a publication but not to a specific book. So I need to make sure to test an edge
@@ -99,6 +99,30 @@ Also, since ISBNs should be unique to a specific publication, other fields like 
 should all be the same if the ISBN is the same between two books. I'm not going to worry about
 implementing this validation for now, but I will make sure my test data follows this.
 
+</details>
+
+## User Story 4
+
+<details>
+As a library user, I would like to be able to borrow a book, so I can read it at home.
+
+- [ ] Validate the book isn't already borrowed
+- [ ] Change the status of the book on a successful borrow function call
+- [ ] Expose functionality to user
+
+This is our first feature that modifies the state of the library!
+
+We need a unique identifier for the books at this point. The ISBN is not enough because the library
+can have multiple copies of the same book and thus they would have the same ISBN. And while we might
+be able to get away with treated such multiple copies as interchangeable, we will likely want to
+eventually track condition of the books, so better to have a way to uniquely identify the books.
+
+For now, I'm going to use a UUID.
+
+Also, I think this might be a good spot to use Result4k instead of a boolean, unit return with
+exceptions, or similar. Having Library.kt return a Result with related Failure types will make a
+nice abstraction layer(s) for the client interaction layer to map that to something meaningful to the
+client (like an appropriate HTTP status code)
 </details>
 
 ## Not Doing For Now
