@@ -14,4 +14,8 @@ class Library(val books: MutableList<Book>) {
     // See MyApproach Question 1
     return books.filter { it.title.equals(title, ignoreCase = true) }
   }
+
+  fun findByIsbn(isbn: String): List<Book> {
+    TODO("Not yet implemented")
+  }
 }

@@ -35,7 +35,7 @@ class LibraryTest :
           result.shouldContainExactly(book2)
         }
 
-        scenario("Two books by that author") {
+        scenario("Multiple books by that author") {
           val result = library.findByAuthor("Average Joe")
           result.shouldContainExactly(book3, book4)
         }
@@ -52,13 +52,30 @@ class LibraryTest :
           result.shouldContainExactly(book3)
         }
 
-        scenario("Two books by that title") {
+        scenario("Multiple books by that title") {
           val result = library.findByTitle("Intro to Coding")
           result.shouldContainExactly(book1a, book1b, book2)
         }
 
         scenario("No books by that title") {
           val result = library.findByTitle("The Princess Bride")
+          result.shouldBeEmpty()
+        }
+      }
+
+      feature("Lookup by ISBN") {
+        scenario("One book by that ISBN") {
+          val result = library.findByIsbn("2345")
+          result.shouldContainExactly(book2)
+        }
+
+        scenario("Multiple books by that ISBN") {
+          val result = library.findByIsbn("1234")
+          result.shouldContainExactly(book1a, book1b)
+        }
+
+        scenario("No books by that ISBN") {
+          val result = library.findByIsbn("abcd")
           result.shouldBeEmpty()
         }
       }
