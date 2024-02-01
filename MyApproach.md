@@ -142,6 +142,27 @@ First story we've had for the library owner, but I'm not going to worry about us
 now as this story doesn't specify that normal users shouldn't be able to know this.
 </details>
 
+## User Story 6
+
+<details>
+As a library user, I should be to prevented from borrowing reference books, so that they are always available.
+
+- [ ] Figure out how to represent reference attribute on Book
+- [ ] Prevent reference books from being borrowed
+
+I can think of a few ways to implement this (an isReference boolean, a genre Enum with a Reference
+value, compositions/inheritance and move borrow to Book object, etc.)
+
+For now, I'm going to go with making Reference a type of Status of a book. This solution came to me
+when I was trying to figure out how to word the FeatureSpec tests.
+
+Also, it has the benefit of putting Available and Reference as separate values for the same
+attribute, lowering the risk of a bug being introduced that a user can borrow a reference book (
+assuming the book must be Available to be borrowed)
+
+I'm also going to introduce a new BorrowProblem to make it clear that the reason a given book can't
+be borrowed is because it's a Reference book, not just that it isn't available.
+
 ## Not Doing For Now
 
 <details>
