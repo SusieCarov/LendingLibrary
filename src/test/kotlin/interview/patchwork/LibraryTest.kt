@@ -26,6 +26,7 @@ class LibraryTest :
               status = "Available")
 
       val library = Library(mutableListOf(book1, book2, book3, book4))
+
       feature("Lookup by author") {
         scenario("One book by that author") {
           val result = library.findByAuthor("John Smith")
@@ -39,6 +40,23 @@ class LibraryTest :
 
         scenario("No books by that author") {
           val result = library.findByAuthor("New Kid on the Block")
+          result.shouldBeEmpty()
+        }
+      }
+
+      feature("Lookup by title") {
+        scenario("One book by that title") {
+          val result = library.findByTitle("Anyone Can Cook")
+          result.shouldContainExactly(book3)
+        }
+
+        scenario("Two books by that title") {
+          val result = library.findByTitle("Intro to Coding")
+          result.shouldContainExactly(book1, book2)
+        }
+
+        scenario("No books by that title") {
+          val result = library.findByTitle("The Princess Bride")
           result.shouldBeEmpty()
         }
       }

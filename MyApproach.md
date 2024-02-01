@@ -66,6 +66,19 @@ Actually, exposing the result to user is going to be quite tricky for me since I
 http4k. So I'm going to leave that part out for now.
 </details>
 
+## User Story 2
+
+<details>
+As a library user, I would like to be able to find books by title, so that I know if they are
+available in the library.
+
+- [ ] Find books by title method
+- [ ] Expose result to user
+
+Pretty straightforward, and again let's start with the tests.
+
+</details>
+
 ## Not Doing For Now
 
 <details>
