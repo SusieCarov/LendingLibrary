@@ -17,6 +17,11 @@
 - ktfmt
   : Opinionated style plugin to minimize fighting with formatting
 
+- gitmoji
+  : I'm trying to follow the [gitmoji](https://gitmoji.dev/) convention. This is a new habit I'm
+  trying to build and I think
+  it is a neat way to see at a glance what sort of changes a commit contains.
+
 ## Initial Thoughts
 
 We've got 6 user stories to implement (love that they are user stories!) with two different user
@@ -90,9 +95,9 @@ As a library user, I would like to be able to find books by ISBN, so that I know
 ISBNs are unique to a publication but not to a specific book. So I need to make sure to test an edge
 case where I have two books with the same ISBN.
 
-Also, since ISBNs should be unique to a specific publication, other fields like author and title should all
-be the same if the ISBN is the same between two books. I'm not going to worry about implementing
-this validation for now, but I will make sure my test data follows this.
+Also, since ISBNs should be unique to a specific publication, other fields like author and title
+should all be the same if the ISBN is the same between two books. I'm not going to worry about
+implementing this validation for now, but I will make sure my test data follows this.
 
 </details>
 
