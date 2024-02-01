@@ -7,7 +7,7 @@ import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.Available
 import interview.patchwork.domain.BookStatus.Borrowed
 import interview.patchwork.domain.BorrowProblem
-import interview.patchwork.domain.BorrowProblem.BookNotAvailable
+import interview.patchwork.domain.BorrowProblem.BookAlreadyBorrowed
 import interview.patchwork.domain.BorrowProblem.BookNotFound
 import java.util.UUID
 
@@ -39,7 +39,7 @@ class Library(val books: MutableList<Book>) {
     }
 
     return when (book.status) {
-      Borrowed -> Failure(BookNotAvailable)
+      Borrowed -> Failure(BookAlreadyBorrowed)
       Available -> {
         book.status = Borrowed
         return Success(Unit)

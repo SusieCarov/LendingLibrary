@@ -5,7 +5,7 @@ import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.Available
 import interview.patchwork.domain.BookStatus.Borrowed
-import interview.patchwork.domain.BorrowProblem.BookNotAvailable
+import interview.patchwork.domain.BorrowProblem.BookAlreadyBorrowed
 import interview.patchwork.domain.BorrowProblem.BookNotFound
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
@@ -124,7 +124,7 @@ class LibraryTest :
 
         scenario("The book is already borrowed") {
           val result = library.borrow(0.toUUID())
-          result shouldBe Failure(BookNotAvailable)
+          result shouldBe Failure(BookAlreadyBorrowed)
         }
 
         scenario("The book does not exist") {
