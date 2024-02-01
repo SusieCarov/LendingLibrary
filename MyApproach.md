@@ -130,7 +130,7 @@ the client (like an appropriate HTTP status code)
 <details>
 As the library owner, I would like to know how many books are being borrowed, so I can see how many are outstanding.
 
-- [ ] Find books by Borrowed status
+- [x] Find books by Borrowed status
 - [ ] Expose to the user
 
 Relatively straightforward again. (Ah, wait. It says "how many books" not which ones... Could just
