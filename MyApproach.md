@@ -121,8 +121,25 @@ For now, I'm going to use a UUID.
 
 Also, I think this might be a good spot to use Result4k instead of a boolean, unit return with
 exceptions, or similar. Having Library.kt return a Result with related Failure types will make a
-nice abstraction layer(s) for the client interaction layer to map that to something meaningful to the
-client (like an appropriate HTTP status code)
+nice abstraction layer(s) for the client interaction layer to map that to something meaningful to
+the client (like an appropriate HTTP status code)
+</details>
+
+## User Story 5
+
+<details>
+As the library owner, I would like to know how many books are being borrowed, so I can see how many are outstanding.
+
+- [ ] Find books by Borrowed status
+- [ ] Expose to the user
+
+Relatively straightforward again. (Ah, wait. It says "how many books" not which ones... Could just
+do a sum and return the number of books, but that is less extensible for future use cases. So I'm
+going to assume they want a list of the books and make a note of this question below as normally I'd
+clarify this with the product owner.)
+
+First story we've had for the library owner, but I'm not going to worry about user permissions right
+now as this story doesn't specify that normal users shouldn't be able to know this.
 </details>
 
 ## Not Doing For Now
@@ -166,6 +183,19 @@ ISBNs have a specif format that I'm ignoring for now. Implementing an ISBN domai
 us to validate that format and make other ISBN related functionality easier to extend.
 </details>
 
+<details>
+<summary> Return book functionality </summary>
+
+We're obviously going to need it eventually, but it isn't in scope for the current user stories.
+</details>
+
+<details>
+<summary> Use a Test Data Generator Tool</summary>
+
+Something like https://serpro69.github.io/kotlin-faker/ would be very good to make sure our tests
+aren't too brittle
+</details>
+
 ## Questions
 
 1. Do we want to ignore capitalization for user queries?
@@ -174,3 +204,6 @@ us to validate that format and make other ISBN related functionality easier to e
 2. What do we want the response to the user to be if the book is already borrowed?
    : I'm using a sealed interface internally, but ideally we'd have a nice human-readable
    message to show the user once it got back to them.
+
+3. For User story 5, do we really want to know just how many books? Or also which books?
+   : I'm going with which books for now as that is more extensible to future use cases.
