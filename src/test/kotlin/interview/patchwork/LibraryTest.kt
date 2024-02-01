@@ -3,10 +3,8 @@ package interview.patchwork
 import dev.forkhandles.result4k.Failure
 import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
-import interview.patchwork.domain.BookStatus.Available
-import interview.patchwork.domain.BookStatus.Borrowed
-import interview.patchwork.domain.BorrowProblem.BookAlreadyBorrowed
-import interview.patchwork.domain.BorrowProblem.BookNotFound
+import interview.patchwork.domain.BookStatus.*
+import interview.patchwork.domain.BorrowProblem.*
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.FeatureSpec
@@ -48,7 +46,7 @@ class LibraryTest :
               title = "Anyone Can Cook",
               author = "Average Joe",
               isbn = "3456",
-              status = Available,
+              status = Reference,
               id = 3.toUUID())
       val book4 =
           Book(
@@ -120,6 +118,11 @@ class LibraryTest :
             result shouldBe Success(Unit)
             library.books.first { it.id == bookId }.status shouldBe Borrowed
           }
+        }
+
+        scenario("The book is a reference book") {
+          val result = library.borrow(3.toUUID())
+          result shouldBe Failure(BookReservedForReference)
         }
 
         scenario("The book is already borrowed") {

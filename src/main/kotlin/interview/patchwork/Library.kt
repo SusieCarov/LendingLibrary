@@ -4,8 +4,7 @@ import dev.forkhandles.result4k.Failure
 import dev.forkhandles.result4k.Result
 import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
-import interview.patchwork.domain.BookStatus.Available
-import interview.patchwork.domain.BookStatus.Borrowed
+import interview.patchwork.domain.BookStatus.*
 import interview.patchwork.domain.BorrowProblem
 import interview.patchwork.domain.BorrowProblem.BookAlreadyBorrowed
 import interview.patchwork.domain.BorrowProblem.BookNotFound
@@ -44,6 +43,7 @@ class Library(val books: MutableList<Book>) {
         book.status = Borrowed
         return Success(Unit)
       }
+      Reference -> TODO()
     }
   }
 

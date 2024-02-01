@@ -12,5 +12,6 @@ data class Book(
 
 enum class BookStatus {
   Available,
-  Borrowed
+  Borrowed,
+  Reference
 }
