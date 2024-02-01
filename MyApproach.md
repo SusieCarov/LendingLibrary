@@ -147,8 +147,8 @@ now as this story doesn't specify that normal users shouldn't be able to know th
 <details>
 As a library user, I should be to prevented from borrowing reference books, so that they are always available.
 
-- [ ] Figure out how to represent reference attribute on Book
-- [ ] Prevent reference books from being borrowed
+- [x] Figure out how to represent reference attribute on Book
+- [x] Prevent reference books from being borrowed
 
 I can think of a few ways to implement this (an isReference boolean, a genre Enum with a Reference
 value, compositions/inheritance and move borrow to Book object, etc.)
@@ -162,6 +162,8 @@ assuming the book must be Available to be borrowed)
 
 I'm also going to introduce a new BorrowProblem to make it clear that the reason a given book can't
 be borrowed is because it's a Reference book, not just that it isn't available.
+
+</details>
 
 ## Not Doing For Now
 
@@ -215,6 +217,14 @@ We're obviously going to need it eventually, but it isn't in scope for the curre
 
 Something like https://serpro69.github.io/kotlin-faker/ would be very good to make sure our tests
 aren't too brittle
+</details>
+
+<details>
+<summary> User profiles</summary>
+
+To start with, I would like to get a Library Owner and a User profile set-up with appropriate
+feature permissions. Then this has a lot of room to grow to support other features like returning
+books, adding new books, removing books from circulation, etc.
 </details>
 
 ## Questions
