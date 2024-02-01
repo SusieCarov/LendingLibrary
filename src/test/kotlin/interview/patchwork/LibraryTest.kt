@@ -7,25 +7,27 @@ import io.kotest.matchers.collections.shouldContainExactly
 
 class LibraryTest :
     FeatureSpec({
-      val book1 =
+      val book1a =
+          Book(title = "Intro to Coding", author = "John Doe", isbn = "1234", status = "Available")
+      val book1b =
           Book(title = "Intro to Coding", author = "John Doe", isbn = "1234", status = "Available")
       val book2 =
           Book(
-              title = "Intro to Coding", author = "John Smith", isbn = "1234", status = "Available")
+              title = "Intro to Coding", author = "John Smith", isbn = "2345", status = "Available")
       val book3 =
           Book(
               title = "Anyone Can Cook",
               author = "Average Joe",
-              isbn = "1234",
+              isbn = "3456",
               status = "Available")
       val book4 =
           Book(
               title = "Adventure is Out There!",
               author = "Average Joe",
-              isbn = "1234",
+              isbn = "4567",
               status = "Available")
 
-      val library = Library(mutableListOf(book1, book2, book3, book4))
+      val library = Library(mutableListOf(book1a, book1b, book2, book3, book4))
 
       feature("Lookup by author") {
         scenario("One book by that author") {
@@ -52,7 +54,7 @@ class LibraryTest :
 
         scenario("Two books by that title") {
           val result = library.findByTitle("Intro to Coding")
-          result.shouldContainExactly(book1, book2)
+          result.shouldContainExactly(book1a, book1b, book2)
         }
 
         scenario("No books by that title") {
