@@ -54,5 +54,26 @@ they are available in the library.
 - [ ] Find books by author method
 - [ ] Expose result to user
 
-Let's start with tests!
+Okay! Got test framework running and these feature tests fail as expected. Time to start
+implementing
+
+I would ideally want to load book list into memory (no database) at start up from a csv or
+something.
+
+For now, I'll start with assuming the books are loaded.
+</details>
+
+## Not Doing For Now
+
+<details>
+<summary>Initialize Library Books</summary>
+
+Since the assignment says
+> Just prove it works by calling the relevant functions from other code.
+
+I'm choosing not to worry about the initial loading/initialization of the library books for the app.
+
+The test classes manually load in book objects and will prove the functions work, so that's good
+enough for now. If I have time, I'll go back and try and add a csv load of some initial data.
+
 </details>
