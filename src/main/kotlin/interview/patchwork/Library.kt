@@ -6,8 +6,7 @@ import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.*
 import interview.patchwork.domain.BorrowProblem
-import interview.patchwork.domain.BorrowProblem.BookAlreadyBorrowed
-import interview.patchwork.domain.BorrowProblem.BookNotFound
+import interview.patchwork.domain.BorrowProblem.*
 import java.util.UUID
 
 class Library(val books: MutableList<Book>) {
@@ -39,11 +38,11 @@ class Library(val books: MutableList<Book>) {
 
     return when (book.status) {
       Borrowed -> Failure(BookAlreadyBorrowed)
+      Reference -> Failure(BookReservedForReference)
       Available -> {
         book.status = Borrowed
         return Success(Unit)
       }
-      Reference -> TODO()
     }
   }
 
