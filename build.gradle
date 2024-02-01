@@ -30,8 +30,6 @@ test {
     useJUnitPlatform()
 }
 
-def kotestVersion = "5.6.2"
-
 dependencies {
     implementation("org.http4k:http4k-core:${http4kVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
