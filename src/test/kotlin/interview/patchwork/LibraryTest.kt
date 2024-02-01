@@ -1,9 +1,15 @@
 package interview.patchwork
 
+import dev.forkhandles.result4k.Failure
+import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
+import interview.patchwork.domain.BorrowProblem.BookNotAvailable
+import interview.patchwork.domain.BorrowProblem.BookNotFound
+import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.shouldBe
 import java.util.UUID
 
 fun Int.toUUID(): UUID =
@@ -16,7 +22,7 @@ class LibraryTest :
               title = "Intro to Coding",
               author = "John Doe",
               isbn = "1234",
-              status = "Available",
+              status = "Borrowed",
               id = 0.toUUID())
       val book1b =
           Book(
@@ -97,6 +103,28 @@ class LibraryTest :
         scenario("No books by that ISBN") {
           val result = library.findByIsbn("abcd")
           result.shouldBeEmpty()
+        }
+      }
+
+      feature("User can borrow a book") {
+        scenario("The book is available for borrowing") {
+          val bookId = 1.toUUID()
+          val result = library.borrow(bookId)
+
+          assertSoftly {
+            result shouldBe Success(Unit)
+            library.books.first { it.id == bookId }.status shouldBe "Borrowed"
+          }
+        }
+
+        scenario("The book is already borrowed") {
+          val result = library.borrow(0.toUUID())
+          result shouldBe Failure(BookNotAvailable)
+        }
+
+        scenario("The book does not exist") {
+          val result = library.borrow(99.toUUID())
+          result shouldBe Failure(BookNotFound)
         }
       }
     })
