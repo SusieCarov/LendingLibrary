@@ -43,3 +43,17 @@ start with implementing those, and then I plan to move through the stories in or
 
 With user stories, this lends itself very well to BDD and TDD. Kotest has nice support for BDD style
 spec that I'll try and use. If it ends up taking too much time, I'll pivot to more generic TDD.
+
+
+## User Story 1
+
+<details>
+
+As a library user, I would like to be able to find books by my favourite author, so that I know if
+they are available in the library.
+
+- [x] Find books by author method
+- [ ] Expose result to user
+
+Let's start with tests!
+</details>

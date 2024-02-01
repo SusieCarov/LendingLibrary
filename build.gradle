@@ -30,6 +30,8 @@ test {
     useJUnitPlatform()
 }
 
+def kotestVersion = "5.6.2"
+
 dependencies {
     implementation("org.http4k:http4k-core:${http4kVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
@@ -38,5 +40,9 @@ dependencies {
     testImplementation("org.http4k:http4k-testing-kotest:${http4kVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-framework-datatest:$kotestVersion")
+    testImplementation("io.kotest:kotest-framework-engine:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 }
 
