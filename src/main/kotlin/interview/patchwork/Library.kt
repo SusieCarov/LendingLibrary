@@ -10,6 +10,8 @@ class Library(val books: MutableList<Book>) {
   }
 
   fun findByTitle(title: String): List<Book> {
-    TODO("Not yet implemented")
+    // TODO: Do we want to ignore capitalization
+    // See MyApproach Question 1
+    return books.filter { it.title.equals(title, ignoreCase = true) }
   }
 }
