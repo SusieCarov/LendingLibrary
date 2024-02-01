@@ -51,7 +51,7 @@ spec that I'll try and use. If it ends up taking too much time, I'll pivot to mo
 As a library user, I would like to be able to find books by my favourite author, so that I know if
 they are available in the library.
 
-- [ ] Find books by author method
+- [x] Find books by author method
 - [ ] Expose result to user
 
 Okay! Got test framework running and these feature tests fail as expected. Time to start
@@ -77,3 +77,8 @@ The test classes manually load in book objects and will prove the functions work
 enough for now. If I have time, I'll go back and try and add a csv load of some initial data.
 
 </details>
+
+## Questions
+
+1. Do we want to ignore capitalization for user queries?
+   : I'm ignoring capitalization for user searches for now
