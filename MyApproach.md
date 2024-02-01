@@ -72,7 +72,7 @@ http4k. So I'm going to leave that part out for now.
 As a library user, I would like to be able to find books by title, so that I know if they are
 available in the library.
 
-- [ ] Find books by title method
+- [x] Find books by title method
 - [ ] Expose result to user
 
 Pretty straightforward, and again let's start with the tests.
