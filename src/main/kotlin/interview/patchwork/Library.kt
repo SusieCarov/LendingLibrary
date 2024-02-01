@@ -16,6 +16,8 @@ class Library(val books: MutableList<Book>) {
   }
 
   fun findByIsbn(isbn: String): List<Book> {
-    TODO("Not yet implemented")
+    // ISBN isn't really a string and will be all numbers or dashes, so not worrying about
+    // ignoreCase
+    return books.filter { it.isbn == isbn }
   }
 }
