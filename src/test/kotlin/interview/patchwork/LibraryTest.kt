@@ -8,6 +8,7 @@ import interview.patchwork.domain.BookStatus.Borrowed
 import interview.patchwork.domain.BorrowProblem.BookNotAvailable
 import interview.patchwork.domain.BorrowProblem.BookNotFound
 import io.kotest.assertions.assertSoftly
+import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactly
@@ -19,6 +20,8 @@ fun Int.toUUID(): UUID =
 
 class LibraryTest :
     FeatureSpec({
+      isolationMode = IsolationMode.InstancePerLeaf
+
       val book1a =
           Book(
               title = "Intro to Coding",
