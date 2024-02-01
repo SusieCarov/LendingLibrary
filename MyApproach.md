@@ -79,6 +79,23 @@ Pretty straightforward, and again let's start with the tests.
 
 </details>
 
+## User Story 3
+
+<details>
+As a library user, I would like to be able to find books by ISBN, so that I know if they are available in the library.
+
+- [ ] Find books by ISBN
+- [ ] Expose result to user
+
+ISBNs are unique to a publication but not to a specific book. So I need to make sure to test an edge
+case where I have two books with the same ISBN.
+
+Also, since ISBNs should be unique to a specific publication, other fields like author and title should all
+be the same if the ISBN is the same between two books. I'm not going to worry about implementing
+this validation for now, but I will make sure my test data follows this.
+
+</details>
+
 ## Not Doing For Now
 
 <details>
@@ -104,6 +121,20 @@ router. So again, since the assignment says
 I'm going to leave this be for now and let calling the Library functions from the tests be enough
 for now.
 
+</details>
+
+<details>
+<summary> ISBN Validation </summary>
+
+If the ISBN is the same between two books, then other core fields like author and title should be
+equal too. This should be validated on the book being added to the library.
+</details>
+
+<details>
+<summary> ISBN Domain object </summary>
+
+ISBNs have a specif format that I'm ignoring for now. Implementing an ISBN domain object would allow
+us to validate that format and make other ISBN related functionality easier to extend.
 </details>
 
 ## Questions
