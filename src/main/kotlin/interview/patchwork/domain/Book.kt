@@ -1,5 +1,6 @@
 package interview.patchwork.domain
 
+import java.time.LocalDate
 import java.util.UUID
 
 data class Book(
@@ -7,7 +8,9 @@ data class Book(
     val author: String,
     val isbn: String,
     var status: BookStatus,
-    val id: UUID = UUID.randomUUID()
+    val id: UUID = UUID.randomUUID(),
+    var lastBorrowTime: LocalDate? = null,
+    val lastReturnTime: LocalDate? = null
 )
 
 enum class BookStatus {

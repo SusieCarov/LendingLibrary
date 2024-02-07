@@ -7,6 +7,7 @@ import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.*
 import interview.patchwork.domain.BorrowProblem
 import interview.patchwork.domain.BorrowProblem.*
+import java.time.LocalDate
 import java.util.UUID
 
 class Library(val books: MutableList<Book>) {
@@ -41,6 +42,7 @@ class Library(val books: MutableList<Book>) {
       Reference -> Failure(BookReservedForReference)
       Available -> {
         book.status = Borrowed
+        book.lastBorrowTime = LocalDate.now()
         return Success(Unit)
       }
     }
