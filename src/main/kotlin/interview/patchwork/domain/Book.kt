@@ -10,7 +10,7 @@ data class Book(
     var status: BookStatus,
     val id: UUID = UUID.randomUUID(),
     var lastBorrowTime: LocalDate? = null,
-    val lastReturnTime: LocalDate? = null
+    var lastReturnTime: LocalDate? = null
 )
 
 enum class BookStatus {

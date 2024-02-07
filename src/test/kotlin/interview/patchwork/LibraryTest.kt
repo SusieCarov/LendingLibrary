@@ -5,6 +5,9 @@ import dev.forkhandles.result4k.Success
 import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.*
 import interview.patchwork.domain.BorrowProblem.*
+import interview.patchwork.domain.BorrowProblem.BookNotFound
+import interview.patchwork.domain.BorrowProblem.BookReservedForReference
+import interview.patchwork.domain.ReturnProblem
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.FeatureSpec
@@ -135,6 +138,34 @@ class LibraryTest :
         scenario("The book does not exist") {
           val result = library.borrow(99.toUUID())
           result shouldBe Failure(BookNotFound)
+        }
+      }
+
+      feature("User can return a book") {
+        scenario("The book is currently borrowed") {
+          val bookId = 0.toUUID()
+          val result = library.returnBook(bookId)
+
+          assertSoftly {
+            result shouldBe Success(Unit)
+            library.books.first { it.id == bookId }.status shouldBe Available
+            library.books.first { it.id == bookId }.lastReturnTime shouldBe LocalDate.now()
+          }
+        }
+
+        scenario("The book is a reference book") {
+          val result = library.returnBook(3.toUUID())
+          result shouldBe Failure(ReturnProblem.BookReservedForReference)
+        }
+
+        scenario("The book is already returned") {
+          val result = library.returnBook(2.toUUID())
+          result shouldBe Failure(ReturnProblem.BookAlreadyReturned)
+        }
+
+        scenario("The book does not exist") {
+          val result = library.returnBook(99.toUUID())
+          result shouldBe Failure(ReturnProblem.BookNotFound)
         }
       }
 

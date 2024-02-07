@@ -7,6 +7,7 @@ import interview.patchwork.domain.Book
 import interview.patchwork.domain.BookStatus.*
 import interview.patchwork.domain.BorrowProblem
 import interview.patchwork.domain.BorrowProblem.*
+import interview.patchwork.domain.ReturnProblem
 import java.time.LocalDate
 import java.util.UUID
 
@@ -29,6 +30,10 @@ class Library(val books: MutableList<Book>) {
     return books.filter { it.isbn == isbn }
   }
 
+  fun findBorrowedBooks(): List<Book> {
+    return books.filter { it.status == Borrowed }
+  }
+
   fun borrow(bookId: UUID): Result<Unit, BorrowProblem> {
 
     val book: Book? = books.find { it.id == bookId }
@@ -48,7 +53,21 @@ class Library(val books: MutableList<Book>) {
     }
   }
 
-  fun findBorrowedBooks(): List<Book> {
-    return books.filter { it.status == Borrowed }
+  fun returnBook(bookId: UUID): Result<Unit, ReturnProblem> {
+    val book: Book? = books.find { it.id == bookId }
+
+    if (book == null) {
+      return Failure(ReturnProblem.BookNotFound)
+    }
+
+    return when (book.status) {
+      Available -> Failure(ReturnProblem.BookAlreadyReturned)
+      Reference -> Failure(ReturnProblem.BookReservedForReference)
+      Borrowed -> {
+        book.status = Available
+        book.lastReturnTime = LocalDate.now()
+        return Success(Unit)
+      }
+    }
   }
 }
